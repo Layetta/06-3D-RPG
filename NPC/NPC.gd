@@ -21,7 +21,8 @@ func _on_Area_body_entered(body):
 
 
 func _on_Area_body_exited(body):
-	Dialogue.hide_dialogue(dialogue)
+	Dialogue.hide_dialogue()
+	#Dialogue.hide_dialogue(dialogue)
 
 
 func finished():
@@ -29,5 +30,3 @@ func finished():
 	Global.timer = 120
 	Global.update_time()
 	get_node("/root/Game/UI/Timer").start()
-
-
