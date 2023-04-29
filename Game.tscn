@@ -7,8 +7,8 @@
 [ext_resource path="res://Player/RayCast.gd" type="Script" id=5]
 [ext_resource path="res://NPC/NPC.gd" type="Script" id=6]
 [ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Ui/Dialog.gd" type="Script" id=8]
-[ext_resource path="res://Ui/UI.gd" type="Script" id=9]
+[ext_resource path="res://UI/Dialog.gd" type="Script" id=8]
+[ext_resource path="res://UI/UI.gd" type="Script" id=9]
 [ext_resource path="res://Drone/Drone.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpatialMaterial" id=1]
@@ -87,8 +87,18 @@ transform = Transform( -0.4641, 0, -0.885783, 0, 1, 0, 0.885783, 0, -0.4641, 41.
 [node name="Target10" parent="Target_container" instance=ExtResource( 4 )]
 transform = Transform( 0.75192, 0, -0.659254, 0, 1, 0, 0.659254, 0, 0.75192, -75.7281, 22.8995, -61.878 )
 
+[node name="Drone_Container" type="Spatial" parent="."]
+
+[node name="Drone" parent="Drone_Container" instance=ExtResource( 10 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 20, 100 )
+
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 9 )
+
+[node name="Damage" type="ColorRect" parent="UI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 0, 0, 0 )
 
 [node name="Background" type="ColorRect" parent="UI"]
 anchor_right = 1.0
@@ -144,11 +154,6 @@ anchor_bottom = 1.0
 margin_top = -20.0
 margin_bottom = 10.0
 bbcode_enabled = true
-
-[node name="Drone_Container" type="Spatial" parent="."]
-
-[node name="Drone" parent="Drone_Container" instance=ExtResource( 10 )]
-transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 20, 100 )
 
 [connection signal="timeout" from="UI/Timer" to="UI" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="UI/Time/NPC/Area" to="UI/Time/NPC" method="_on_Area_body_entered"]

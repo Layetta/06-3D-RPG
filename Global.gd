@@ -3,10 +3,15 @@ extends Node
 var timer = 0
 var score = 0
 
-
 func _ready():
 	OS.window_position = Vector2(100,100)
-
+	update_score(0)
+	
+func reset():
+	timer = 0
+	score = 0
+	#update_score(0)
+	
 func _input(_event):
 	if Input.is_action_just_pressed("Quit"):
 		get_tree().quit()

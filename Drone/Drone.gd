@@ -5,6 +5,9 @@ var angle = 0
 export var height = 20
 export var speed = 5 
 
+var health = 100
+
+
 func _ready():
 	randomize()
 	angle = randf() * 2 * PI
@@ -20,6 +23,12 @@ func new_position(a):
 	$Tween.interpolate_property(self, "global_transform:origin", global_transform.origin, pos, speed, Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	$Tween.start()
 
+func die():
+	health -= 10
+	if health <= 0:
+		Global.update_score(100)
+		queue_free()
+	
 func _on_Tween_tween_all_completed():
 	angle += PI/2 + (randf() * (PI/2))
 	angle = wrapf(angle, 0, 2*PI)
