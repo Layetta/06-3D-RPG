@@ -55,3 +55,8 @@ func get_input():
 		input_dir += Camera.global_transform.basis.z
 	input_dir = input_dir.normalized()
 	return input_dir
+
+
+func damage():
+	pass
+	

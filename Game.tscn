@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://NPC/NPC.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Ui/Dialog.gd" type="Script" id=8]
 [ext_resource path="res://Ui/UI.gd" type="Script" id=9]
+[ext_resource path="res://Drone/Drone.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 1, 0, 0, 1 )
@@ -30,8 +31,8 @@ radius = 5.53242
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( -0.989719, 0, -0.143026, 0, 1, 0, 0.143026, 0, -0.989719, 40.1173, 0.215616, 9.64777 )
-collision_layer = 3
-collision_mask = 3
+collision_layer = 2
+collision_mask = 7
 script = ExtResource( 2 )
 
 [node name="Pivot" type="Position3D" parent="Player"]
@@ -143,6 +144,11 @@ anchor_bottom = 1.0
 margin_top = -20.0
 margin_bottom = 10.0
 bbcode_enabled = true
+
+[node name="Drone_Container" type="Spatial" parent="."]
+
+[node name="Drone" parent="Drone_Container" instance=ExtResource( 10 )]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 20, 100 )
 
 [connection signal="timeout" from="UI/Timer" to="UI" method="_on_Timer_timeout"]
 [connection signal="body_entered" from="UI/Time/NPC/Area" to="UI/Time/NPC" method="_on_Area_body_entered"]
